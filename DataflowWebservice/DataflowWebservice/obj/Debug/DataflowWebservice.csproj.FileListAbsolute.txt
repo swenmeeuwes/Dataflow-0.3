@@ -75,3 +75,5 @@ D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\bin\System.Web.Http
 D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\obj\Debug\DataflowWebservice.csprojResolveAssemblyReference.cache
 D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\obj\Debug\DataflowWebservice.dll
 D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\obj\Debug\DataflowWebservice.pdb
+D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\bin\Npgsql.dll
+D:\GitHub\Dataflow-0.3\DataflowWebservice\DataflowWebservice\bin\Npgsql.xml
