@@ -11,6 +11,11 @@ public class GuyBehaviour : MonoBehaviour {
 
     private Animator animator;
     private Rigidbody rigidbody;
+
+    public bool toggleThirdPerson = false;
+    public LayerMask withoutPlayer;
+    public LayerMask withPlayer;
+
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -40,5 +45,20 @@ public class GuyBehaviour : MonoBehaviour {
 
         transform.position += transform.forward * speed;
         transform.Rotate(0, turnSpeed, 0);
+
+        if (Input.GetKeyUp(KeyCode.KeypadEnter)) {
+            toggleThirdPerson = !toggleThirdPerson;
+            if (toggleThirdPerson)
+            {
+                Camera.main.cullingMask = withPlayer;
+                Camera.main.transform.localPosition = new Vector3(0, 2.5f, -1.6f);
+                Camera.main.transform.localRotation = Quaternion.Euler(new Vector3(17.30f, 0, 0));
+            }
+            else {
+                Camera.main.cullingMask = withoutPlayer;
+                Camera.main.transform.localPosition = new Vector3(0, 1.68f, 0);
+                Camera.main.transform.localRotation = Quaternion.Euler(new Vector3(5f, 0, 0));
+            }
+        }
     }
 }
