@@ -4,26 +4,53 @@ using System.Collections;
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Rigidbody))]
-public class GuyBehaviour : MonoBehaviour {
+public class GuyBehaviour : MonoBehaviour
+{
     public float speedModifier = 1f;
     public float turnSpeedModifier = 30f;
     public float sprintModifier = 3f;
 
     private Animator animator;
-    private Rigidbody rigidbody;
 
-    public bool toggleThirdPerson = false;
+    private bool toggleThirdPerson = false;
     public LayerMask withoutPlayer;
     public LayerMask withPlayer;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         animator = GetComponent<Animator>();
-        rigidbody = GetComponent<Rigidbody>();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        thirdPersonView();
+
+    }
+
+    public void rotateTowards(Vector3 target)
+    {
+        Quaternion lookRotation;
+        Vector3 direction;
+        
+        direction = (target - transform.position).normalized;
+        lookRotation = Quaternion.LookRotation(direction);
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime);
+
+    }
+
+    public void walk() {
+        animator.SetFloat("vSpeed", 1);
+        float speed = speedModifier * Time.deltaTime;
+        transform.position += transform.forward * speed;
+
+    }
+
+    private void movement()
+    {
         var vSpeed = Input.GetAxis("Vertical");
         var hSpeed = Input.GetAxis("Horizontal");
 
@@ -36,17 +63,24 @@ public class GuyBehaviour : MonoBehaviour {
         if (speed == 0)
             turnSpeed = 0;
 
-        if(Input.GetKey(KeyCode.LeftShift)) {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
             speed *= sprintModifier;
             turnSpeed *= sprintModifier;
             animator.SetBool("Running", true);
-        } else
+        }
+        else
             animator.SetBool("Running", false);
 
         transform.position += transform.forward * speed;
         transform.Rotate(0, turnSpeed, 0);
 
-        if (Input.GetKeyUp(KeyCode.KeypadEnter)) {
+    }
+
+    private void thirdPersonView()
+    {
+        if (Input.GetKeyUp(KeyCode.KeypadEnter))
+        {
             toggleThirdPerson = !toggleThirdPerson;
             if (toggleThirdPerson)
             {
