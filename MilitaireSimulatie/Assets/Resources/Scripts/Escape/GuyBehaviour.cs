@@ -49,6 +49,10 @@ public class GuyBehaviour : MonoBehaviour
 
     }
 
+    public void stopWalking() {
+        animator.SetFloat("vSpeed", 0);
+    }
+
     private void movement()
     {
         var vSpeed = Input.GetAxis("Vertical");

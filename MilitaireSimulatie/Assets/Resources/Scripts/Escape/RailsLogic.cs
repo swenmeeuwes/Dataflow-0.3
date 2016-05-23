@@ -12,6 +12,7 @@ public class RailsLogic : MonoBehaviour
     public bool enableDebug = false;
 
     private GuyBehaviour guyBehavior;
+    [SerializeField]
     private int counter = 0;
 
     // Use this for initialization
@@ -19,7 +20,7 @@ public class RailsLogic : MonoBehaviour
     {
         guyBehavior = GetComponent<GuyBehaviour>();
         Waypoint startWaypoint = waypoints[0].GetComponent<Waypoint>();
-        startWaypoint.Active = true;
+        startWaypoint.Next = true;
 
     }
 
@@ -39,17 +40,25 @@ public class RailsLogic : MonoBehaviour
 
     }
 
-    private void logic() {
-        guyBehavior.rotateTowards(waypoints[counter].transform.position);
-        guyBehavior.walk();
+    private void logic()
+    {
+        if (counter < waypoints.Count)
+        {
+            guyBehavior.rotateTowards(waypoints[counter].transform.position);
+            guyBehavior.walk();
+        }
+        else {
+            guyBehavior.stopWalking();
 
+        }
     }
 
     private void toggleActive(bool setActive)
     {
         for (int i = 0; i < waypoints.Count - 1; i++)
         {
-            waypoints[i].SetActive(setActive);
+            Renderer rend = waypoints[i].GetComponent<Renderer>();
+            rend.enabled = setActive;
         }
     }
 
@@ -61,7 +70,15 @@ public class RailsLogic : MonoBehaviour
         }
     }
 
-    public void incrementCounter() {
+    public void incrementCounter()
+    {
         counter++;
+        if (counter < waypoints.Count)
+        {
+            Waypoint nextWaypoint = waypoints[counter].GetComponent<Waypoint>();
+            nextWaypoint.Next = true;
+            Waypoint previousWaypoint = waypoints[counter - 1].GetComponent<Waypoint>();
+            previousWaypoint.Next = false;
+        }
     }
 }

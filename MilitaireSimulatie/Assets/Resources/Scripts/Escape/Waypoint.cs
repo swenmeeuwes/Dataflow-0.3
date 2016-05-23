@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEditor;
 
+[RequireComponent(typeof(Renderer))]
 public class Waypoint : MonoBehaviour
 {
 
@@ -9,7 +10,7 @@ public class Waypoint : MonoBehaviour
     private float speed;
     private bool waitHere = false;
     private float waitTime;
-    private bool active = false;
+    private bool next = false;
 
     private Renderer rend;
 
@@ -61,18 +62,18 @@ public class Waypoint : MonoBehaviour
             waitTime = value;
         }
     }
-    public bool Active
+    public bool Next
     {
         get
         {
-            return active;
+            return next;
         }
 
         set
         {
-            active = value;
+            next = value;
             rend = GetComponent<Renderer>();
-            if (active)
+            if (next)
             {   
                 rend.material.SetColor("_Color", Color.red);
             }
