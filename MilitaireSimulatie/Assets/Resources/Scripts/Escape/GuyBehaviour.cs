@@ -46,6 +46,7 @@ public class GuyBehaviour : MonoBehaviour
         animator.SetFloat("vSpeed", 1);
         float speed = speedModifier * Time.deltaTime;
         transform.position += transform.forward * speed;
+        
 
     }
 
