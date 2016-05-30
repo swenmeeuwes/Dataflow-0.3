@@ -7,62 +7,19 @@ using System;
 public class Waypoint : MonoBehaviour
 {
 
-    private Vector3 position;
-    private float speed;
-    private bool waitHere = false;
-    private float waitTime;
+    private Vector3 position { get; set; }
+    private float speed { get; set; }
+    private bool waitHere { get; set; }
+    private float waitTime { get; set; }
     private bool next = false;
 
     private Renderer rend;
 
-    public Vector3 Position
+    void Start()
     {
-        get
-        {
-            return position;
-        }
-
-        set
-        {
-            position = value;
-        }
+        waitHere = false;
     }
-    public float Speed
-    {
-        get
-        {
-            return speed;
-        }
-
-        set
-        {
-            speed = value;
-        }
-    }
-    public bool WaitHere
-    {
-        get
-        {
-            return waitHere;
-        }
-
-        set
-        {
-            waitHere = value;
-        }
-    }
-    public float WaitTime
-    {
-        get
-        {
-            return waitTime;
-        }
-
-        set
-        {
-            waitTime = value;
-        }
-    }
+    
     public bool Next
     {
         get
