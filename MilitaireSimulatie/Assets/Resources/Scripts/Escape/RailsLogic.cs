@@ -12,8 +12,9 @@ public class RailsLogic : MonoBehaviour
     public bool enableDebug = false;
 
     private GuyBehaviour guyBehavior;
-    [SerializeField]
     private int counter = 0;
+
+    private MachineGun machineGun;
 
     // Use this for initialization
     void Start()
@@ -21,6 +22,8 @@ public class RailsLogic : MonoBehaviour
         guyBehavior = GetComponent<GuyBehaviour>();
         Waypoint startWaypoint = waypoints[0].GetComponent<Waypoint>();
         startWaypoint.Next = true;
+        GameObject m249 = GameObject.Find("M249");
+        machineGun = m249.GetComponent<MachineGun>();
 
     }
 
@@ -72,6 +75,7 @@ public class RailsLogic : MonoBehaviour
 
     public void incrementCounter()
     {
+        onWaypointEnter(counter);
         counter++;
         if (counter < waypoints.Count)
         {
@@ -79,6 +83,31 @@ public class RailsLogic : MonoBehaviour
             nextWaypoint.Next = true;
             Waypoint previousWaypoint = waypoints[counter - 1].GetComponent<Waypoint>();
             previousWaypoint.Next = false;
+        }
+        
+
+    }
+
+    public void onWaypointEnter(int count)
+    {
+        switch (count) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                machineGun.startShooting();
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                machineGun.stopShooting();
+                break;
+
         }
     }
 }

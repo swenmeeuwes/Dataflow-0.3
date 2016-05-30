@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
+using System;
 
 [RequireComponent(typeof(Renderer))]
 public class Waypoint : MonoBehaviour
@@ -89,5 +90,4 @@ public class Waypoint : MonoBehaviour
         RailsLogic railsLogic = other.GetComponent<RailsLogic>();
         railsLogic.incrementCounter();
     }
-
 }

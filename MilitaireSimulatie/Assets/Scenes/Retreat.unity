@@ -161,7 +161,6 @@ MonoBehaviour:
   - {fileID: 1300326052}
   - {fileID: 1925964071}
   enableDebug: 1
-  counter: 0
 --- !u!1001 &142868526
 Prefab:
   m_ObjectHideFlags: 0
@@ -332,7 +331,7 @@ Transform:
   m_Children:
   - {fileID: 925551352}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 2
 --- !u!1 &854499444 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163230, guid: 68c5ea3bb9cfc34449de8791c5723844, type: 2}
@@ -378,7 +377,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 6d5f13cdfffe42e478cf0f111fbb2dfb, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 6d5f13cdfffe42e478cf0f111fbb2dfb, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -555,7 +554,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: target
@@ -601,7 +600,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: e97d460114663774998ab47de4d7f317, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400012, guid: e97d460114663774998ab47de4d7f317, type: 3}
       propertyPath: m_LocalScale.x
@@ -856,12 +855,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc389964445119943804a0a4addd359b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tracerPrefab: {fileID: 496350, guid: a4755a38afd54184499602be3ac186c3, type: 2}
+  tracerPrefab: {fileID: 402194, guid: a4755a38afd54184499602be3ac186c3, type: 2}
   target: {fileID: 125324511}
   shootingSpeed: 0.08
   rayMask:
     serializedVersion: 2
     m_Bits: 4294967291
+--- !u!82 &1237055071
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237055066}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 5d91ab04b20bf034788f497d7770fde2, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &1300326052 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163230, guid: 68c5ea3bb9cfc34449de8791c5723844, type: 2}
@@ -1011,7 +1084,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Name
@@ -1115,7 +1188,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Name
