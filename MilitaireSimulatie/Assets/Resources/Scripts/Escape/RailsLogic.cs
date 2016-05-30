@@ -37,7 +37,6 @@ public class RailsLogic : MonoBehaviour
         }
 
         logic();
-
     }
 
     private void logic()
@@ -47,9 +46,9 @@ public class RailsLogic : MonoBehaviour
             guyBehavior.rotateTowards(waypoints[counter].transform.position);
             guyBehavior.walk();
         }
-        else {
+        else
+        {
             guyBehavior.stopWalking();
-
         }
     }
 
