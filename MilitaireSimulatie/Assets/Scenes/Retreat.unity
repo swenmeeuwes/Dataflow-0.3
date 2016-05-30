@@ -332,10 +332,7 @@ Transform:
   m_Children:
   - {fileID: 925551352}
   m_Father: {fileID: 0}
-<<<<<<< HEAD
   m_RootOrder: 2
-=======
-  m_RootOrder: 5
 --- !u!114 &381222156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -408,7 +405,6 @@ MonoBehaviour:
   guiMaxBrushSize: 100
   guiSelectPresetsUsingNumkeys: 1
   allowUndo: 1
->>>>>>> refs/remotes/origin/Terrain-Noise
 --- !u!1 &854499444 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 163230, guid: 68c5ea3bb9cfc34449de8791c5723844, type: 2}
@@ -529,6 +525,10 @@ Prefab:
     - target: {fileID: 100000, guid: a1a80e00154b6104fa557ad9d76d0cf9, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: a1a80e00154b6104fa557ad9d76d0cf9, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1a80e00154b6104fa557ad9d76d0cf9, type: 3}

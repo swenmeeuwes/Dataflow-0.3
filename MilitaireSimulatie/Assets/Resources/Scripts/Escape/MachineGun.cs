@@ -50,7 +50,7 @@ public class MachineGun : MonoBehaviour
             yield return new WaitForSeconds(shootingSpeed);
         }
         audioSource.PlayOneShot(burstSound);
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine("shoot");
     }
 

@@ -43,8 +43,11 @@ public class Waypoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        //waypoint reached
-        RailsLogic railsLogic = other.GetComponent<RailsLogic>();
-        railsLogic.incrementCounter();
+        if (other.gameObject.tag == "Player")
+        {
+            //waypoint reached
+            RailsLogic railsLogic = other.GetComponent<RailsLogic>();
+            railsLogic.incrementCounter();
+        }
     }
 }
