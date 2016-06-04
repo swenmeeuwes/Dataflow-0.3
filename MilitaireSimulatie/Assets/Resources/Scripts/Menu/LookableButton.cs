@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BoxCollider))]
 public abstract class LookableButton : MonoBehaviour {
     const int countDown = 3;
 
@@ -24,7 +25,7 @@ public abstract class LookableButton : MonoBehaviour {
                 StartCoroutine(CountDown());
         }
 
-        if (!looking) //&& lastFrameLooking
+        if (!looking)
             currentCount = countDown;
 
         lastFrameLooking = looking;
@@ -37,7 +38,9 @@ public abstract class LookableButton : MonoBehaviour {
             return;
 
         var style = new GUIStyle() { fontSize = 48, alignment = TextAnchor.MiddleCenter };
-        GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), (currentCount + 1).ToString(), style); // Add 1 to the currentCount because the coroutine is executed before the OnGUI() method
+        style.normal.textColor = Color.white;
+
+        GUI.Label(new Rect(0, 0, Screen.width, Screen.height / 2), (currentCount).ToString(), style); // Add 1 to the currentCount because the coroutine is executed before the OnGUI() method
     }
 
     protected abstract void Action();
@@ -48,7 +51,7 @@ public abstract class LookableButton : MonoBehaviour {
         while (looking || lastFrameLooking)
         {
             currentCount--;
-            if(currentCount == -1)
+            if(currentCount == 0)
             {
                 Action();
                 break;

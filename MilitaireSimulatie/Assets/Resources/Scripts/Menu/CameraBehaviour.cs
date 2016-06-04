@@ -23,7 +23,7 @@ public class CameraBehaviour : MonoBehaviour {
 
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 12f, buttonLayerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, 30f, buttonLayerMask))
         {
             var lookable = hit.transform.gameObject.GetComponent<LookableButton>();
             lookable.looking = true;

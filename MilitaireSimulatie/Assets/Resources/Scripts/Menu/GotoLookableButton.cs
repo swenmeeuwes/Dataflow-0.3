@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GotoLookableButton : LookableButton
 {
-    protected override void Update()
-    {
-        base.Update();
-    }
-
+    [SerializeField]
+    string sceneName;
     protected override void Action()
     {
-        Debug.Log("YES!");
+        SceneManager.LoadScene(sceneName);
     }
 }
