@@ -19,6 +19,8 @@ namespace MilitaryEvaluationSystem {
 
         public Timer t;
 
+        private HelperMethods h;
+
 
         public MainWindow() {
             InitializeComponent();
@@ -26,12 +28,14 @@ namespace MilitaryEvaluationSystem {
             t = new Timer();
             t.Interval = 500;
             t.Elapsed += new ElapsedEventHandler(UpdateGraphs);
+            
         }
 
         public void Init() {
             endSessionButton.IsEnabled = false;
             exportSessionButton.IsEnabled = false;
             data = new List<ShirtData>();
+            h = new HelperMethods(data);
         }
 
         private void UpdateGraphs(object sender, ElapsedEventArgs e) {
@@ -62,7 +66,7 @@ namespace MilitaryEvaluationSystem {
 
         public static void AddNewData(ShirtData s) {
             if (data.Count > 50) {
-                data.RemoveRange(0, 10);
+                data.RemoveAt(0);
             }
             data.Add(s);
         }
@@ -91,7 +95,7 @@ namespace MilitaryEvaluationSystem {
 
                 heartBeatText.Content = data[data.Count - 1].beatsPerMinute.ToString();
                 bodyTempText.Content = data[data.Count - 1].temperature.ToString();
-                float stressLevel = HelperMethods.CalculateStressLevel(data[data.Count - 1].beatsPerMinute, data[data.Count - 1].temperature);
+                float stressLevel = h.CalculateStressLevel(data[data.Count - 1].beatsPerMinute, data[data.Count - 1].temperature);
                 if (stressLevel > 6.0 && stressLevel <= 7.5) {
                     stressLevelText.Foreground = Brushes.Orange;
                 }

@@ -34,8 +34,9 @@ namespace MilitaryEvaluationSystem {
         }
 
         public static void CloseConnection() {
-            serialPort.DataReceived -= SerialPort_DataReceived;
             serialPort.Close();
+            serialPort.DataReceived -= SerialPort_DataReceived;
+            
         }
 
         private static void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e) {
