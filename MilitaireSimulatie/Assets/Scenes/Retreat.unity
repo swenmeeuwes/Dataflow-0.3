@@ -649,6 +649,18 @@ Prefab:
       propertyPath: m_Constraints
       value: 112
       objectReference: {fileID: 0}
+    - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_Name
+      value: Teammate
+      objectReference: {fileID: 0}
+    - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_TagString
+      value: Teammate
+      objectReference: {fileID: 0}
+    - target: {fileID: 9534796, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2523264d619dcb14593f20f296f14773, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
   m_IsPrefabParent: 0
@@ -1177,7 +1189,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Name
-      value: Enemy (1)
+      value: Teammate 2
       objectReference: {fileID: 0}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: target
@@ -1195,6 +1207,14 @@ Prefab:
       propertyPath: distanceFromTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_TagString
+      value: Teammate
+      objectReference: {fileID: 0}
+    - target: {fileID: 9534796, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2523264d619dcb14593f20f296f14773, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
   m_IsPrefabParent: 0
@@ -1293,7 +1313,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Name
-      value: Enemy (2)
+      value: Teammate 3
       objectReference: {fileID: 0}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: target
@@ -1311,6 +1331,14 @@ Prefab:
       propertyPath: distanceFromTarget
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 142610, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_TagString
+      value: Teammate
+      objectReference: {fileID: 0}
+    - target: {fileID: 9534796, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2523264d619dcb14593f20f296f14773, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
   m_IsPrefabParent: 0

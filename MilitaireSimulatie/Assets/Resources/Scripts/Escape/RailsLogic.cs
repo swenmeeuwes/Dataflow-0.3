@@ -14,6 +14,7 @@ public class RailsLogic : MonoBehaviour
     private int counter = 0;
 
     private MachineGun machineGun;
+    private Enemy unluckyTeammate;
 
     // Use this for initialization
     void Start()
@@ -23,6 +24,9 @@ public class RailsLogic : MonoBehaviour
         startWaypoint.Next = true;
         GameObject m249 = GameObject.Find("M249");
         machineGun = m249.GetComponent<MachineGun>();
+        GameObject[] teammates = GameObject.FindGameObjectsWithTag("Teammate");
+        int index = UnityEngine.Random.Range(0, teammates.Length);
+        unluckyTeammate = teammates[index].GetComponent<Enemy>();
 
     }
 
@@ -82,13 +86,14 @@ public class RailsLogic : MonoBehaviour
             Waypoint previousWaypoint = waypoints[counter - 1].GetComponent<Waypoint>();
             previousWaypoint.Next = false;
         }
-        
+
 
     }
 
     public void onWaypointEnter(int count)
     {
-        switch (count) {
+        switch (count)
+        {
             case 0:
                 break;
             case 1:
@@ -97,6 +102,7 @@ public class RailsLogic : MonoBehaviour
                 machineGun.startShooting();
                 break;
             case 3:
+                unluckyTeammate.setWounded(true);
                 break;
             case 4:
                 break;

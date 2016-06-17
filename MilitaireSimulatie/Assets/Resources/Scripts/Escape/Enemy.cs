@@ -9,18 +9,21 @@ public class Enemy : MonoBehaviour {
     public float distanceFromTarget = float.Epsilon;
     public float speed = 1;
     public float turnSpeed = 30;
+    public bool isWounded = false;
+
 
     Rigidbody rbody;
     CapsuleCollider capsuleCollider;
     Animator animator;
 	// Use this for initialization
-	void Start () { 
+	void Start () {
         rbody = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
 
         if (target != null)
             StartCoroutine(MoveToTarget());
+
 	}
 	
 	// Update is called once per frame
@@ -31,7 +34,7 @@ public class Enemy : MonoBehaviour {
     IEnumerator MoveToTarget()
     {
         var remainingDistance = (target.transform.position - transform.position).magnitude;
-        while(remainingDistance > distanceFromTarget)
+        while(remainingDistance > distanceFromTarget && !isWounded)
         {
             var speedDelta = speed * Time.deltaTime;
             var turnSpeedDelta = turnSpeed * Time.deltaTime;
@@ -52,5 +55,12 @@ public class Enemy : MonoBehaviour {
 
         animator.SetFloat("vSpeed", 0);
         animator.SetFloat("hSpeed", 0);
+    }
+
+
+    public void setWounded(bool isWounded) {
+        animator.SetBool("isWounded", isWounded);
+        this.isWounded = isWounded;
+
     }
 }
