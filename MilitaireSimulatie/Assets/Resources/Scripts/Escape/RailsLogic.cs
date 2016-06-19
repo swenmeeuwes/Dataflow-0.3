@@ -6,23 +6,35 @@ using System;
 [RequireComponent(typeof(GuyBehaviour))]
 public class RailsLogic : MonoBehaviour
 {
-
+    
     public List<GameObject> waypoints;
     public bool enableDebug = false;
 
     private GuyBehaviour guyBehavior;
     private int counter = 0;
 
+    private GameObject saveUI, safetyUI;
+
     private MachineGun machineGun;
+    private Enemy unluckyTeammate;
+    private GameObject teammate;
 
     // Use this for initialization
     void Start()
     {
+
         guyBehavior = GetComponent<GuyBehaviour>();
         Waypoint startWaypoint = waypoints[0].GetComponent<Waypoint>();
         startWaypoint.Next = true;
         GameObject m249 = GameObject.Find("M249");
         machineGun = m249.GetComponent<MachineGun>();
+        teammate = GameObject.Find("Teammate 3");
+        unluckyTeammate = teammate.GetComponent<Enemy>();
+
+        saveUI = GameObject.Find("SaveUI");
+        safetyUI = GameObject.Find("SafetyUI");
+        safetyUI.SetActive(false);
+        saveUI.SetActive(false);
 
     }
 
@@ -50,6 +62,7 @@ public class RailsLogic : MonoBehaviour
         }
         else
         {
+            Debug.Log("done?");
             guyBehavior.stopWalking();
         }
     }
@@ -82,13 +95,14 @@ public class RailsLogic : MonoBehaviour
             Waypoint previousWaypoint = waypoints[counter - 1].GetComponent<Waypoint>();
             previousWaypoint.Next = false;
         }
-        
+
 
     }
 
     public void onWaypointEnter(int count)
     {
-        switch (count) {
+        switch (count)
+        {
             case 0:
                 break;
             case 1:
@@ -97,8 +111,12 @@ public class RailsLogic : MonoBehaviour
                 machineGun.startShooting();
                 break;
             case 3:
+                unluckyTeammate.setWounded(true);
                 break;
             case 4:
+                safetyUI.SetActive(true);
+                saveUI.SetActive(true);
+                safeTeammate();
                 break;
             case 5:
                 break;
@@ -107,5 +125,11 @@ public class RailsLogic : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void safeTeammate() {
+
+        teammate.AddComponent<Waypoint>();
+        waypoints.Insert(counter + 1, teammate);
     }
 }
