@@ -42,11 +42,28 @@ public class Waypoint : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.tag == "Player")
         {
             //waypoint reached
             RailsLogic railsLogic = other.GetComponent<RailsLogic>();
             railsLogic.incrementCounter();
+        }
+    }
+
+    void OnCollisionEnter(Collision other) {
+        if (other.gameObject.tag == "Player")
+        {
+            if (tag == "Teammate") {
+                
+                //waypoint reached
+                GetComponent<Enemy>().setWounded(false);
+                RailsLogic railsLogic = other.gameObject.GetComponent<RailsLogic>();
+                railsLogic.incrementCounter();
+                other.gameObject.GetComponent<GuyBehaviour>().speedModifier *= 0.5f;
+                Destroy(GetComponent<Waypoint>());
+
+            }
+
         }
     }
 }
