@@ -13,6 +13,7 @@ public class RailsLogic : MonoBehaviour
     private GuyBehaviour guyBehavior;
     private int counter = 0;
 
+    [SerializeField]
     private GameObject saveUI, safetyUI;
 
     private MachineGun machineGun;
@@ -31,8 +32,8 @@ public class RailsLogic : MonoBehaviour
         teammate = GameObject.Find("Teammate 3");
         unluckyTeammate = teammate.GetComponent<Enemy>();
 
-        saveUI = GameObject.Find("SaveUI");
-        safetyUI = GameObject.Find("SafetyUI");
+        //saveUI = GameObject.Find("SaveUI");
+        //safetyUI = GameObject.Find("SafetyUI");
         safetyUI.SetActive(false);
         saveUI.SetActive(false);
 
@@ -116,7 +117,7 @@ public class RailsLogic : MonoBehaviour
             case 4:
                 safetyUI.SetActive(true);
                 saveUI.SetActive(true);
-                safeTeammate();
+                //safeTeammate();
                 break;
             case 5:
                 break;
@@ -128,8 +129,16 @@ public class RailsLogic : MonoBehaviour
     }
 
     public void safeTeammate() {
-
         teammate.AddComponent<Waypoint>();
         waypoints.Insert(counter + 1, teammate);
+
+        safetyUI.SetActive(false);
+        saveUI.SetActive(false);
+    }
+
+    public void safeYourself()
+    {
+        safetyUI.SetActive(false);
+        saveUI.SetActive(false);
     }
 }

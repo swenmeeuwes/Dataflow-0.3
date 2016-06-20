@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(BoxCollider))]
+[RequireComponent(typeof(TextMesh))]
 public abstract class LookableButton : MonoBehaviour {
     const int countDown = 3;
 
@@ -12,13 +13,20 @@ public abstract class LookableButton : MonoBehaviour {
     bool isCounting = false;
     int currentCount;
 
+    TextMesh textMesh;
+
     protected virtual void Start()
     {
+        textMesh = GetComponent<TextMesh>();
+
         currentCount = countDown;
         gameObject.layer = LayerMask.NameToLayer("Lookable");
     }
     protected virtual void Update()
     {
+        if (!looking)
+            textMesh.color = Color.white;
+
         if(looking && !lastFrameLooking)
         {
             if(!isCounting)
@@ -50,6 +58,7 @@ public abstract class LookableButton : MonoBehaviour {
         isCounting = true;
         while (looking || lastFrameLooking)
         {
+            textMesh.color = new Color(0.1f, 0.1f, (float)currentCount / (float)countDown);
             currentCount--;
             if(currentCount == 0)
             {
