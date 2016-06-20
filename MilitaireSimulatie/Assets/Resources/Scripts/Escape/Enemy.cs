@@ -4,34 +4,38 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
 [RequireComponent(typeof(Animator))]
-public class Enemy : MonoBehaviour {
+public class Enemy : MonoBehaviour
+{
     public GameObject target;
     public float distanceFromTarget = float.Epsilon;
     public float speed = 1;
     public float turnSpeed = 30;
+    public bool isWounded = false;
 
-    Rigidbody rbody;
-    CapsuleCollider capsuleCollider;
-    Animator animator;
-	// Use this for initialization
-	void Start () { 
+    private Rigidbody rbody;
+    private CapsuleCollider capsuleCollider;
+    private Animator animator;
+
+    // Use this for initialization
+    void Start()
+    {
         rbody = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         animator = GetComponent<Animator>();
 
-        if (target != null)
-            StartCoroutine(MoveToTarget());
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	    
-	}
+        startWalking();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     IEnumerator MoveToTarget()
     {
         var remainingDistance = (target.transform.position - transform.position).magnitude;
-        while(remainingDistance > distanceFromTarget)
+        while (remainingDistance > distanceFromTarget && !isWounded)
         {
             var speedDelta = speed * Time.deltaTime;
             var turnSpeedDelta = turnSpeed * Time.deltaTime;
@@ -52,5 +56,36 @@ public class Enemy : MonoBehaviour {
 
         animator.SetFloat("vSpeed", 0);
         animator.SetFloat("hSpeed", 0);
+    }
+
+    public void startWalking()
+    {
+        animator.SetFloat("vSpeed", 1);
+        transform.parent = target.transform;
+        transform.localRotation = Quaternion.identity;
+
+
+    }
+
+    public void stopWalking()
+    {
+        animator.SetFloat("vSpeed", 0);
+        transform.parent = null;
+    }
+
+
+
+    public void setWounded(bool isWounded)
+    {
+        animator.SetBool("isWounded", isWounded);
+        this.isWounded = isWounded;
+
+        if (isWounded)
+        {
+            stopWalking();
+        }
+        else {
+            startWalking();
+        }
     }
 }

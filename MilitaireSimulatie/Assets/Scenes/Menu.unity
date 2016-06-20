@@ -95,13 +95,13 @@ GameObject:
   - 224: {fileID: 259805312}
   - 222: {fileID: 259805314}
   - 114: {fileID: 259805313}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &259805312
 RectTransform:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   looking: 0
-  sceneName: Retreat
+  sceneName: RetreatBriefing
 --- !u!65 &334226214
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -567,7 +567,7 @@ GameObject:
   - 223: {fileID: 1336683690}
   - 114: {fileID: 1336683689}
   - 114: {fileID: 1336683688}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -619,8 +619,8 @@ Canvas:
   m_GameObject: {fileID: 1336683687}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 655536780}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
