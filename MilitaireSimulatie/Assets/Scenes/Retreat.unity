@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18aab6a7e655eb344a61e26999210f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModifier: 8
+  speedModifier: 3
   turnSpeedModifier: 1
   sprintModifier: 3
   withoutPlayer:
@@ -160,7 +160,7 @@ MonoBehaviour:
   - {fileID: 299907073}
   - {fileID: 1300326052}
   - {fileID: 1925964071}
-  enableDebug: 1
+  enableDebug: 0
 --- !u!1001 &142868526
 Prefab:
   m_ObjectHideFlags: 0
@@ -639,7 +639,7 @@ Prefab:
       objectReference: {fileID: 125324505}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: speed
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: distanceFromTarget
@@ -1185,7 +1185,7 @@ Prefab:
       objectReference: {fileID: 125324505}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: speed
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5498524, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Constraints
@@ -1301,7 +1301,7 @@ Prefab:
       objectReference: {fileID: 125324505}
     - target: {fileID: 11422938, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: speed
-      value: 12
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5498524, guid: 549560cb90844d24596e7188bfa9b484, type: 2}
       propertyPath: m_Constraints
