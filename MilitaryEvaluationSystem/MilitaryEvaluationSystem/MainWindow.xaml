@@ -1,0 +1,58 @@
+﻿<Window x:Class="MilitaryEvaluationSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MilitaryEvaluationSystem"
+        xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+        mc:Ignorable="d"
+        Title="Militaiy Evaluation System" Height="600" Width="1200">
+    <Grid>
+        <TextBox x:Name="heartBeatBox" HorizontalAlignment="Left" Height="118" Margin="375,25,0,0" TextWrapping="Wrap" Text="Heart Beat" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="bodyTempBox" HorizontalAlignment="Left" Height="118" Margin="523,25,0,0" TextWrapping="Wrap" Text="Body Temperature" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="startSessionButton" Content="Start Session" HorizontalAlignment="Left" Margin="23,518,0,0" VerticalAlignment="Top" Width="75" Click="startSessionButton_Click"/>
+        <Button x:Name="endSessionButton" Content="End Session" HorizontalAlignment="Left" Margin="1107,518,0,0" VerticalAlignment="Top" Width="75" Click="endSessionButton_Click"/>
+        <Label x:Name="heartBeatText" Content="Label" HorizontalAlignment="Left" Margin="390,62,0,0" VerticalAlignment="Top" Height="63" Width="88" FontSize="34"/>
+        <Label x:Name="bodyTempText" Content="Label" HorizontalAlignment="Left" Margin="538,62,0,0" VerticalAlignment="Top" Height="63" Width="88" FontSize="34"/>
+        <DVC:Chart x:Name="heartChart" Height="250"
+        	Background="LightSteelBlue" Margin="23,192,604,127">
+            <DVC:Chart.LegendStyle>
+                <Style TargetType="Control">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </DVC:Chart.LegendStyle>
+            <DVC:Chart.Axes>
+                <DVC:CategoryAxis Orientation="X" Title="Time" />
+                <DVC:CategoryAxis Orientation="Y" Title="BPM" />
+                <DVC:LinearAxis Orientation="Y" Minimum="50" Maximum="280"/>
+            </DVC:Chart.Axes>
+            <DVC:LineSeries
+        		IndependentValueBinding="{Binding Key}"
+        		DependentValueBinding="{Binding Value}"/>
+        </DVC:Chart>
+        <DVC:Chart x:Name="tempChart" Height="250"
+        	Background="LightSteelBlue" Margin="617,192,10,127">
+            <DVC:Chart.LegendStyle>
+                <Style TargetType="{x:Type Control}">
+                    <Setter Property="Width" Value="0"/>
+                    <Setter Property="Height" Value="0"/>
+                </Style>
+            </DVC:Chart.LegendStyle>
+            <DVC:Chart.Axes>
+                <DVC:CategoryAxis Orientation="X" Title="Time" />
+                <DVC:CategoryAxis Orientation="Y" Title="Temp" />
+                <DVC:LinearAxis Orientation="Y" Minimum="22.0" Maximum="27.0"/>
+            </DVC:Chart.Axes>
+            <DVC:LineSeries
+        		IndependentValueBinding="{Binding Key}"
+        		DependentValueBinding="{Binding Value}"/>
+        </DVC:Chart>
+        <TextBox x:Name="stressLevelBox" HorizontalAlignment="Left" Height="118" Margin="919,25,0,0" TextWrapping="Wrap" Text="Stress Level" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="stressLevelText" Content="Label" HorizontalAlignment="Left" Margin="940,62,0,0" VerticalAlignment="Top" Height="63" Width="88" FontSize="34"/>
+
+    </Grid>
+</Window>
+    
+    
