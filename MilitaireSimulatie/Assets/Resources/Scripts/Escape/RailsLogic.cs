@@ -2,13 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(GuyBehaviour))]
 public class RailsLogic : MonoBehaviour
 {
-    
+
     public List<GameObject> waypoints;
     public bool enableDebug = false;
+    private bool stopWalking = false;
 
     private GuyBehaviour guyBehavior;
     private int counter = 0;
@@ -19,6 +21,7 @@ public class RailsLogic : MonoBehaviour
     private MachineGun machineGun;
     private Enemy unluckyTeammate;
     private GameObject teammate;
+    private List<Enemy> remainingTeammates;
 
     // Use this for initialization
     void Start()
@@ -30,10 +33,11 @@ public class RailsLogic : MonoBehaviour
         GameObject m249 = GameObject.Find("M249");
         machineGun = m249.GetComponent<MachineGun>();
         teammate = GameObject.Find("Teammate 3");
+        remainingTeammates = new List<Enemy>();
+        remainingTeammates.Add(GameObject.Find("Teammate").GetComponent<Enemy>());
+        remainingTeammates.Add(GameObject.Find("Teammate 2").GetComponent<Enemy>());
         unluckyTeammate = teammate.GetComponent<Enemy>();
 
-        //saveUI = GameObject.Find("SaveUI");
-        //safetyUI = GameObject.Find("SafetyUI");
         safetyUI.SetActive(false);
         saveUI.SetActive(false);
 
@@ -56,14 +60,13 @@ public class RailsLogic : MonoBehaviour
 
     private void logic()
     {
-        if (counter < waypoints.Count)
+        if (counter < waypoints.Count && !stopWalking)
         {
             guyBehavior.rotateTowards(waypoints[counter].transform.position);
             guyBehavior.walk();
         }
         else
         {
-            Debug.Log("done?");
             guyBehavior.stopWalking();
         }
     }
@@ -72,8 +75,12 @@ public class RailsLogic : MonoBehaviour
     {
         for (int i = 0; i < waypoints.Count - 1; i++)
         {
+
             Renderer rend = waypoints[i].GetComponent<Renderer>();
-            rend.enabled = setActive;
+            if (rend.transform.tag != "Teammate")
+            {
+                rend.enabled = setActive;
+            }
         }
     }
 
@@ -117,28 +124,45 @@ public class RailsLogic : MonoBehaviour
             case 4:
                 safetyUI.SetActive(true);
                 saveUI.SetActive(true);
-                //safeTeammate();
+                stopWalking = true;
+                for (int i = 0; i < remainingTeammates.Count; i++)
+                {
+                    remainingTeammates[i].stopWalking();
+                }
                 break;
             case 5:
                 break;
             case 6:
                 machineGun.stopShooting();
+                SceneManager.LoadScene("Menu");
                 break;
 
         }
     }
 
-    public void safeTeammate() {
+    public void safeTeammate()
+    {
         teammate.AddComponent<Waypoint>();
-        waypoints.Insert(counter + 1, teammate);
+        waypoints.Insert(counter, teammate);
 
         safetyUI.SetActive(false);
         saveUI.SetActive(false);
+        stopWalking = false;
+        for (int i = 0; i < remainingTeammates.Count; i++)
+        {
+            remainingTeammates[i].startWalking();
+        }
     }
 
     public void safeYourself()
     {
         safetyUI.SetActive(false);
         saveUI.SetActive(false);
+
+        stopWalking = false;
+        for (int i = 0; i < remainingTeammates.Count; i++)
+        {
+            remainingTeammates[i].startWalking();
+        }
     }
 }

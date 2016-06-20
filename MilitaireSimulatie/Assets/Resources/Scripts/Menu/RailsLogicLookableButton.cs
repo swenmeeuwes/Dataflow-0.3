@@ -14,7 +14,6 @@ public class RailsLogicLookableButton : LookableButton
     {
         base.Start();
 
-        //railsLogic = GetComponent<RailsLogic>();
     }
 
     protected override void Action()
