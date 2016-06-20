@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,14 @@ namespace MilitaryEvaluationSystem.Windows {
         private void popupOK_Click(object sender, RoutedEventArgs e) {
             Webservice.Connect(comboBox.SelectedItem.ToString());
             m.t.Enabled = true;
+
+            if (!trainee_name.Text.Equals(""))
+                m.traineeName = trainee_name.Text;
+            else
+                m.traineeName = "Trainee1";
+
             this.Close();
+            MainWindow.stopwatch = Stopwatch.StartNew();
             m.startSessionButton.IsEnabled = false;
             m.endSessionButton.IsEnabled = true;
         }

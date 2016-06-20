@@ -12,42 +12,65 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace MilitaryEvaluationSystem {
-    class PDFGenerator {
-        Document doc;
-        FileStream output;
+    public class PDFGenerator {
+        private Document doc;
+        private FileStream output;
+        private List<ShirtData> data;
 
-        public PDFGenerator(string fileName) {
+        private string fileName;
+        private string trainee;
+
+        public PDFGenerator(string trainee, List<ShirtData> data) {
+            this.fileName = "Activity_Log";
+            this.trainee = trainee;
+            this.data = data;
             doc = new Document();
-            output = new FileStream("/Users/Jesse/Documents/Visual Studio 2015/Projects/MilitaryEvaluationSystem/" + fileName + ".pdf", FileMode.OpenOrCreate, FileAccess.ReadWrite);
-        }
 
-        public void createPDF(List<ShirtData> data, Chart lineChart) {
-            ConvertGraph(lineChart);
+            GeneratePDF();
+        }
+        
+        private void GeneratePDF() {
+
+            StringBuilder builder = new StringBuilder();
+            builder.Append("Activity Logs/");
+            builder.Append(fileName);
+            builder.Append("_");
+            builder.Append(trainee);
+            builder.Append("_");
+            builder.Append(DateTime.Now.ToString("dd-MM-yyyy"));
+            builder.Append(".pdf");
+
+            output = new FileStream(builder.ToString(), FileMode.Create, FileAccess.Write);
+
             PdfWriter pdf = PdfWriter.GetInstance(doc, output);
             doc.Open();
-            Image i = Image.GetInstance("/Users/Jesse/Documents/Visual Studio 2015/Projects/MilitaryEvaluationSystem/graph.png");
-            doc.Add(new Paragraph("Your heart beat data:"));
-            i.ScaleToFit(500, 1000);
-            doc.Add(i);
-            
-            doc.Close();          
-        }
 
-        public void ConvertGraph(Chart lineChart) {
-            RenderTargetBitmap image = new RenderTargetBitmap(
-                (int)lineChart.ActualWidth,
-                600,
-                96d,
-                96d,
-                PixelFormats.Default);
-            image.Render(lineChart);
+            builder.Clear();
 
-            using (FileStream stream = new FileStream("/Users/Jesse/Documents/Visual Studio 2015/Projects/MilitaryEvaluationSystem/graph.png", FileMode.Create)) {
-                PngBitmapEncoder png = new PngBitmapEncoder();
-                png.Frames.Add(BitmapFrame.Create(image));
-                png.Save(stream);
+            builder.Append("Passed milliseconds");
+            builder.Append("                ");
+            builder.Append("Heart beat");
+            builder.Append("                ");
+            builder.Append("Body Temp.");
+            builder.Append("                ");
+            builder.Append("Stress level");
+
+            doc.Add(new Paragraph(builder.ToString()));
+
+            for (int i = 0; i < data.Count; i++) {
+                builder.Clear();
+                builder.Append(data[i].milliseconds);
+                builder.Append("                                        ");
+                builder.Append(data[i].beatsPerMinute);
+                builder.Append("                                    ");
+                builder.Append(data[i].temperature);
+                builder.Append("                                    ");
+                builder.Append(data[i].stressLevel);
+
+                doc.Add(new Paragraph(builder.ToString()));
             }
-            
+
+            doc.Close();
 
         }
     }

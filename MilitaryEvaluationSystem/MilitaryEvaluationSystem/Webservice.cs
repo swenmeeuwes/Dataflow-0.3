@@ -34,20 +34,22 @@ namespace MilitaryEvaluationSystem {
         }
 
         public static void CloseConnection() {
-            serialPort.Close();
             serialPort.DataReceived -= SerialPort_DataReceived;
+            serialPort.Close();
+            
             
         }
 
         private static void SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e) {
-            SerialPort serialPort = (SerialPort)sender;
-            string receivedString = serialPort.ReadLine();
-            if (!IsValidJson(receivedString))
-                return;
-            DataModel data = JsonConvert.DeserializeObject<DataModel>(receivedString);
-            ShirtData s = new ShirtData();
-            s.FromDataModelToShirtData(data);
-            MainWindow.AddNewData(s);
+            if (serialPort.IsOpen) {
+                SerialPort serialPort = (SerialPort)sender;
+                string receivedString = serialPort.ReadLine();
+                if (!IsValidJson(receivedString))
+                    return;
+                DataModel data = JsonConvert.DeserializeObject<DataModel>(receivedString);
+                ShirtData s = new ShirtData();
+                MainWindow.AddNewData(data);
+            }
         }
 
         private static bool IsValidJson(string strInput) {

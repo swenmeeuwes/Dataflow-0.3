@@ -2,6 +2,7 @@
 using MilitaryEvaluationSystem.Windows;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls.DataVisualization.Charting;
@@ -17,10 +18,15 @@ namespace MilitaryEvaluationSystem {
     public partial class MainWindow : Window {
         private static List<ShirtData> data;
 
+        private static List<ShirtData> allData;
+
         public Timer t;
 
-        private HelperMethods h;
+        private static HelperMethods h;
 
+        public static Stopwatch stopwatch;
+
+        public string traineeName;
 
         public MainWindow() {
             InitializeComponent();
@@ -33,8 +39,8 @@ namespace MilitaryEvaluationSystem {
 
         public void Init() {
             endSessionButton.IsEnabled = false;
-            exportSessionButton.IsEnabled = false;
             data = new List<ShirtData>();
+            allData = new List<ShirtData>();
             h = new HelperMethods(data);
         }
 
@@ -53,22 +59,28 @@ namespace MilitaryEvaluationSystem {
         private void endSessionButton_Click(object sender, RoutedEventArgs e) {
             startSessionButton.IsEnabled = true;
             endSessionButton.IsEnabled = false;
-            exportSessionButton.IsEnabled = true;
+            PDFGenerator generator = new PDFGenerator(traineeName, allData);
+            MessageBoxResult m = MessageBox.Show("Your session has been succesfully exported to a pdf.",
+                                                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             Webservice.CloseConnection();
         }
 
         private void exportSessionButton_Click(object sender, RoutedEventArgs e) {
-            PDFGenerator p = new PDFGenerator("test1");
-            p.createPDF(data, heartChart);
-            MessageBoxResult m = MessageBox.Show("Your session has been succesfully exported to a pdf.", 
-                                                    "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            
+            //p.createPDF(data, heartChart);
+            //MessageBoxResult m = MessageBox.Show("Your session has been succesfully exported to a pdf.", 
+            //                                        "Success", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        public static void AddNewData(ShirtData s) {
+        public static void AddNewData(DataModel d) {
+            ShirtData s = new ShirtData();
+            float stressLevel = h.CalculateStressLevel(d.beatsPerMinute, d.temperature);
+            s.FromDataModelToShirtData(d, stopwatch.ElapsedMilliseconds, stressLevel);
             if (data.Count > 50) {
                 data.RemoveAt(0);
             }
             data.Add(s);
+            allData.Add(s);
         }
 
 
@@ -103,7 +115,7 @@ namespace MilitaryEvaluationSystem {
                     stressLevelText.Foreground = Brushes.Red;
                 }
                 else {
-                    stressLevelText.Foreground = System.Windows.Media.Brushes.Black;
+                    stressLevelText.Foreground = Brushes.Black;
                 }
                 stressLevelText.Content = stressLevel.ToString();
             }));
