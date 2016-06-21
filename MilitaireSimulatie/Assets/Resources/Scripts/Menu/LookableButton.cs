@@ -9,6 +9,9 @@ public abstract class LookableButton : MonoBehaviour {
     [HideInInspector]
     public bool looking = false;
 
+    [SerializeField]
+    KeyCode selectKey;
+
     bool lastFrameLooking = false;
     bool isCounting = false;
     int currentCount;
@@ -24,6 +27,9 @@ public abstract class LookableButton : MonoBehaviour {
     }
     protected virtual void Update()
     {
+        if (Input.GetKeyDown(selectKey))
+            Action();
+
         if (!looking)
             textMesh.color = Color.white;
 

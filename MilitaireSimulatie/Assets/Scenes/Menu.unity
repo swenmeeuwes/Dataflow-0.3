@@ -36,7 +36,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 0}
+  m_Sun: {fileID: 893628709}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   looking: 0
+  selectKey: 13
   sceneName: RetreatBriefing
 --- !u!65 &334226214
 BoxCollider:
